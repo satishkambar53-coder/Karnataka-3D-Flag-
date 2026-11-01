@@ -1,0 +1,174 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: #050505;
+}
+
+.scene {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(circle at 50% 40%,
+        #393939, #101010 60%, #000);
+    perspective: 1200px;
+}
+
+/* Flag pole */
+
+.pole {
+    position: absolute;
+    width: 12px;
+    height: 75vh;
+    left: 18%;
+    top: 12%;
+    background: linear-gradient(
+        90deg, #555, #fff, #777, #333
+    );
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px #000;
+}
+
+.pole-top {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background: radial-gradient(circle, #fff, #777);
+    border-radius: 50%;
+    top: -12px;
+    left: -6px;
+}
+
+/* Flag */
+
+.flag-container {
+    position: absolute;
+    width: 55vw;
+    max-width: 650px;
+    height: 36vw;
+    max-height: 400px;
+    left: calc(18% + 12px);
+    top: 25%;
+    perspective: 1000px;
+}
+
+.flag {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    animation: wave 3s ease-in-out infinite;
+    filter: drop-shadow(10px 15px 15px #0009);
+    overflow: hidden;
+}
+
+.yellow, .red {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    left: 0;
+}
+
+.yellow {
+    top: 0;
+    background: linear-gradient(
+        90deg, #f4c900, #ffe600, #d4a900
+    );
+}
+
+.red {
+    bottom: 0;
+    background: linear-gradient(
+        90deg, #c90000, #f00000, #a00000
+    );
+}
+
+/* Cloth shine */
+
+.flag::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent 0%,
+        #ffffff18 4%,
+        transparent 8%
+    );
+    animation: shine 2s linear infinite;
+    pointer-events: none;
+}
+
+.flag-text {
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: clamp(20px, 4vw, 45px);
+    font-weight: bold;
+    text-shadow: 3px 4px 8px #000;
+    white-space: nowrap;
+}
+
+/* Animation */
+
+@keyframes wave {
+    0%, 100% {
+        transform: rotateY(-8deg) skewY(0deg);
+    }
+
+    25% {
+        transform: rotateY(12deg) skewY(3deg);
+    }
+
+    50% {
+        transform: rotateY(-15deg) skewY(-3deg);
+    }
+
+    75% {
+        transform: rotateY(10deg) skewY(2deg);
+    }
+}
+
+@keyframes shine {
+    from {
+        transform: translateX(-30%);
+    }
+    to {
+        transform: translateX(30%);
+    }
+}
+
+/* Bottom title */
+
+.title {
+    position: absolute;
+    bottom: 7%;
+    text-align: center;
+    color: white;
+}
+
+.title h1 {
+    font-size: clamp(30px, 5vw, 55px);
+    color: #ffdf00;
+    text-shadow: 0 0 20px #ffae00;
+}
+
+.title p {
+    margin-top: 10px;
+    letter-spacing: 5px;
+    font-size: 12px;
+    color: #ddd;
+}
